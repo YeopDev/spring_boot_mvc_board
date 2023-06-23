@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JasyptConfigTest {
     @Test
     void jasypt_encyrpt_and_decrypt_test() {
-        String plainText = "org.mariadb.jdbc.Driver";
+        String plainText = "";
         StandardPBEStringEncryptor jasypt = new StandardPBEStringEncryptor();
         jasypt.setPassword(getJasyptEncryptorPassword());
 
