@@ -1,0 +1,14 @@
+# Maria DB Configure
+spring:
+  datasource:
+    hikari:
+      driver-class-name: ENC(npi57mD6EMaw16fLSsJhbaOOtKfaovUiYm5yBCzqDXE=)
+      jdbc-url: ENC(gubTm6z6KQekbIqUJCcp71Ra45DEqsnp0xeAp7iqJJGCMgMwN6jt0+TUoJmUMCw5k/WHgxcazE7d8jj3GIxDbNrsgqt+JsAHxW/2PKmth4BmNHPJVPidNQ==)
+      username: ENC(LZDLXMZEmfJsMsvCNSa5Lw==)
+      password: ENC(Y+Vi7Umz1A7eyyRCZqYobg==)
+      connection-test-query: SELECT 1
+
+# Mybatis Configure
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
