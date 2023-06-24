@@ -1,5 +1,9 @@
 # Maria DB Configure
 spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
   datasource:
     hikari:
       driver-class-name: ENC(npi57mD6EMaw16fLSsJhbaOOtKfaovUiYm5yBCzqDXE=)
