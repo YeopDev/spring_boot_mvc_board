@@ -1,67 +1,122 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>board</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+    <meta charset="UTF-8">
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"></link>
 </head>
 <body>
 <div class="container">
-  <h2>게시판 상세 화면</h2>
-  <form id="frm" method="post">
-    <table class="board_detail">
-      <colgroup>
-        <col width="15%"/>
-        <col width="35%"/>
-        <col width="15%"/>
-        <col width="35%"/>
-      </colgroup>
-      <caption>게시글 상세내용</caption>
-      <tbody>
-      <tr>
-        <th scope="row">글 번호</th>
-        <td th:text="${board.boardIdx}"></td>
-        <th scope="row">조회수</th>
-        <td th:text="${board.hitCnt}"></td>
-      </tr>
-      <tr>
-        <th scope="row">작성자</th>
-        <td th:text="${board.creatorId}"></td>
-        <th scope="row">작성일자</th>
-        <td th:text="${board.createdDatetime}"></td>
-      </tr>
-      <tr>
-        <th scope="row">제목</th>
-        <td colspan="3">
-          <input type="text" id="title" name="title" th:value="${board.title}"/>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">내용</th>
-        <td colspan="4" class="view_text">
-          <textarea title="내용" id="contents" name="contents" th:text="${board.contents}"></textarea>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <input type="hidden" name="boardIdx" th:value="${board.boardIdx}"/>
-  </form>
-  <input type="button" id="list" value="목록으로">
-  <input type="button" id="edit" value="수정하기">
-  <input type="button" id="delete" value="삭제하기">
+    <h2>게시판 상세 화면</h2>
+    <form id="frm" method="post">
+        <table class="board_detail">
+            <colgroup>
+                <col width="15%"/>
+                <col width="35%"/>
+                <col width="15%"/>
+                <col width="35%"/>
+            </colgroup>
+            <caption>게시글 상세내용</caption>
+            <tbody>
+            <tr>
+                <th scope="row">글 번호</th>
+                <td th:text="${board.id}"></td>
+                <th scope="row">조회수</th>
+                <td th:text="${board.hitCnt}"></td>
+            </tr>
+            <tr>
+                <th scope="row">작성자</th>
+                <td th:text="${board.creatorId}"></td>
+                <th scope="row">작성일자</th>
+                <td th:text="${board.createdDatetime}"></td>
+            </tr>
+            <tr>
+                <th scope="row">제목</th>
+                <td colspan="3">
+                    <input type="text" id="title" name="title" th:value="${board.title}"/>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">내용</th>
+                <td colspan="4" class="view_text">
+                    <textarea title="내용" id="contents" name="contents" th:text="${board.contents}"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="hidden" id="hiddenId" th:value="${#strings.toString(board.id)}"/>
+    </form>
+    <input type="button" id="board" value="목록으로">
+    <input type="button" id="edit" value="수정하기">
+    <input type="button" id="delete" value="삭제하기">
 </div>
 </body>
 </html>
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#list").on("click",function (){
-      location.href = "/yeop/openBoardList.do";
+    document.addEventListener("DOMContentLoaded", function () {
+
+        document.getElementById("board").addEventListener("click", function () {
+            location.href = "/yeop/board-list";
+        });
+
+        document.getElementById("edit").addEventListener("click", function () {
+            let id = document.getElementById("hiddenId").value;
+            let title = document.getElementById("title").value;
+            let contents = document.getElementById("contents").value;
+
+            var url = "/yeop/board/";
+            var data = {
+                id:id,
+                title: title,
+                contents: contents
+            };
+
+            fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // 성공적으로 처리된 후의 동작
+                        document.getElementById("board").click();
+                    } else {
+                        // 오류 처리
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
+
+        document.getElementById("delete").addEventListener("click", function () {
+            let id = document.getElementById("hiddenId").value;
+
+            var url = "/yeop/board/"+id;
+            var data = {
+                id:id
+            };
+
+            fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // 성공적으로 처리된 후의 동작
+                        document.getElementById("board").click();
+                    } else {
+                        // 오류 처리
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
     });
-    $("#edit").on("click",function (){
-      $("#frm").attr("action","/yeop/updateBoard.do").submit();
-    });
-    $("#delete").on("click",function (){
-      $("#frm").attr("action","/yeop/deleteBoard.do").submit();
-    });
-  });
 </script>
