@@ -5,7 +5,7 @@
 <mapper namespace="io.github.yeop.board.mvc_board.mapper.BoardMapper">
     <select id="selectBoardList" resultType="io.github.yeop.board.mvc_board.dto.BoardDto">
         <![CDATA[
-        SELECT board_idx
+        SELECT board_idx AS id
              ,title
              ,contents
              ,hit_cnt
@@ -34,20 +34,20 @@
         UPDATE
             t_board
         SET hit_cnt = hit_cnt + 1
-        WHERE board_idx = #{boardIdx}
+        WHERE board_idx = #{id}
         ]]>
     </update>
 
     <select id="selectBoardDetail" parameterType="int" resultType="io.github.yeop.board.mvc_board.dto.BoardDto">
         <![CDATA[
-        SELECT board_idx
+        SELECT board_idx AS id
              ,title
              ,contents
              ,hit_cnt
              ,DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
              ,creator_id
         FROM t_board
-        WHERE board_idx = #{boardIdx}
+        WHERE board_idx = #{id}
           AND deleted_yn = 'N'
         ]]>
     </select>
@@ -57,7 +57,7 @@
         UPDATE t_board
         SET title = #{title}
           ,contents = #{contents}
-        WHERE board_idx = #{boardIdx}
+        WHERE board_idx = #{id}
         ]]>
     </update>
 
@@ -67,7 +67,7 @@
         SET deleted_yn = 'Y'
           ,updated_datetime = Now()
           ,updater_id = 'admin'
-        WHERE board_idx = #{boardIdx}
+        WHERE board_idx = #{id}
         ]]>
     </update>
 </mapper>
