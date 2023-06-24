@@ -5,13 +5,13 @@ import io.github.yeop.board.mvc_board.dto.BoardDto;
 import java.util.List;
 
 public interface BoardService {
-    List<BoardDto> selectBoardList() throws Exception;
+    List<BoardDto> selectBoardList();
 
-    void insertBoard(BoardDto board) throws Exception;
+    void insertBoard(BoardDto board);
 
-    BoardDto selectBoardDetail(int boardIdx) throws Exception;
+    BoardDto selectBoardDetail(int id);
 
-    void updateBoard(BoardDto board) throws Exception;
+    void updateBoard(BoardDto board);
 
-    void deleteBoard(int boardIdx) throws Exception;
+    void deleteBoard(int id);
 }
