@@ -33,7 +33,7 @@ public class DatabaseConfiguration {
     }
 
     @Bean
-    public DataSource dataSource() throws Exception {
+    public DataSource dataSource() {
         return new HikariDataSource(hikariConfig());
     }
 
@@ -51,5 +51,4 @@ public class DatabaseConfiguration {
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
-
 }
