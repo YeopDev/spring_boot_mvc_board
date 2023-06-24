@@ -1,5 +1,6 @@
 package io.github.yeop.board.mvc_board.service;
 
+import io.github.yeop.board.mvc_board.domain.BoardRepository;
 import io.github.yeop.board.mvc_board.dto.BoardDto;
 import io.github.yeop.board.mvc_board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
-    @Autowired
-    private BoardMapper boardMapper;
+//    private final BoardRepository boardRepository;
+    private final BoardMapper boardMapper;
 
     @Override
     public List<BoardDto> selectBoardList() throws Exception {
