@@ -54,7 +54,6 @@
 </html>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
-
         document.getElementById("board").addEventListener("click", function () {
             location.href = "/yeop/board-list";
         });
@@ -64,8 +63,8 @@
             let title = document.getElementById("title").value;
             let contents = document.getElementById("contents").value;
 
-            var url = "/yeop/board/";
-            var data = {
+            let url = "/yeop/board/";
+            let data = {
                 id:id,
                 title: title,
                 contents: contents
@@ -80,10 +79,7 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        // 성공적으로 처리된 후의 동작
                         document.getElementById("board").click();
-                    } else {
-                        // 오류 처리
                     }
                 })
                 .catch(error => {
@@ -94,8 +90,8 @@
         document.getElementById("delete").addEventListener("click", function () {
             let id = document.getElementById("hiddenId").value;
 
-            var url = "/yeop/board/"+id;
-            var data = {
+            let url = "/yeop/board/"+id;
+            let data = {
                 id:id
             };
 
@@ -108,10 +104,7 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        // 성공적으로 처리된 후의 동작
                         document.getElementById("board").click();
-                    } else {
-                        // 오류 처리
                     }
                 })
                 .catch(error => {

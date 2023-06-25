@@ -2,27 +2,64 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <title>board</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+    <meta charset="UTF-8">
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"></link>
 </head>
 <body>
 <div class="container">
-  <h2>게시판 등록</h2>
-  <form id="frm" name="frm" method="post" action="/yeop/insertBoard.do">
-    <table class="board_detail">
-      <tr>
-        <td>제목</td>
-        <td><input type="text" id="title" name="title"></td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <textarea id="contents" name="contents"></textarea>
-        </td>
-      </tr>
-    </table>
-    <input type="submit" id="submit" value="저장" class="btn">
-  </form>
+    <h2>게시판 등록</h2>
+    <form id="frm" method="post">
+        <table class="board_detail">
+            <tr>
+                <td>제목</td>
+                <td><input type="text" id="title" name="title"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="contents" name="contents"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" id="submit" value="저장" class="btn">
+        <input type="button" id="board" value="목록으로">
+    </form>
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("board").addEventListener("click", function () {
+            location.href = "/yeop/board-list";
+        });
+
+        document.getElementById("frm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let title = document.getElementById("title").value;
+            let contents = document.getElementById("contents").value;
+
+            let url = "/yeop/board/";
+            let data = {
+                title: title,
+                contents: contents
+            };
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById("board").click();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
+    });
+</script>
