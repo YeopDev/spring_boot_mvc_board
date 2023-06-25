@@ -3,9 +3,11 @@ package io.github.yeop.board.mvc_board.controller.api;
 import io.github.yeop.board.mvc_board.dto.BoardDto;
 import io.github.yeop.board.mvc_board.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/yeop")
@@ -13,23 +15,26 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("/board")
-    public String insertBoard(@RequestBody BoardDto board) {
+    public ResponseEntity<String> insertBoard(@RequestBody BoardDto board) {
         boardService.insertBoard(board);
+        log.debug("insert Board");
 
-        return "redirect:/yeop/board-list";
+        return ResponseEntity.ok("insert success");
     }
 
     @PutMapping(value = "/board")
-    public String updateBoard(@RequestBody BoardDto board) {
+    public ResponseEntity<String> updateBoard(@RequestBody BoardDto board) {
         boardService.updateBoard(board);
+        log.debug("update Board");
 
-        return "redirect:/yeop/board-list";
+        return ResponseEntity.ok("update success");
     }
 
     @DeleteMapping("/board/{id}")
-    public String deleteBoard(@PathVariable int id) {
+    public ResponseEntity<String> deleteBoard(@PathVariable int id) {
         boardService.deleteBoard(id);
+        log.debug("delete Board");
 
-        return "redirect:/yeop/board-list";
+        return ResponseEntity.ok("delete success");
     }
 }
