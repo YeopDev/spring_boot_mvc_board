@@ -1,7 +1,9 @@
 package io.github.yeop.board.mvc_board.service;
 
-import io.github.yeop.board.mvc_board.domain.BoardRepository;
-import io.github.yeop.board.mvc_board.dto.BoardDto;
+import io.github.yeop.board.mvc_board.dto.BoardDetailDto;
+import io.github.yeop.board.mvc_board.dto.BoardListDto;
+import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
+import io.github.yeop.board.mvc_board.dto.UpdateBoardDto;
 import io.github.yeop.board.mvc_board.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,29 +13,30 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoardServiceImpl implements BoardService {
 //    private final BoardRepository boardRepository;
     private final BoardMapper boardMapper;
 
     @Override
-    public List<BoardDto> selectBoardList() {
+    @Transactional(readOnly = true)
+    public List<BoardListDto> selectBoardList() {
         return boardMapper.selectBoardList();
     }
 
     @Override
-    public void insertBoard(BoardDto board) {
+    public void insertBoard(InsertBoardDto board) {
         boardMapper.insertBoard(board);
     }
 
     @Override
-    @Transactional
-    public BoardDto selectBoardDetail(int id) {
+    public BoardDetailDto selectBoardDetail(int id) {
         boardMapper.updateHitCount(id);
         return boardMapper.selectBoardDetail(id);
     }
 
     @Override
-    public void updateBoard(BoardDto board) {
+    public void updateBoard(UpdateBoardDto board) {
         boardMapper.updateBoard(board);
     }
 
