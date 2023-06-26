@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="io.github.yeop.board.mvc_board.mapper.BoardMapper">
-    <select id="selectBoardList" resultType="io.github.yeop.board.mvc_board.dto.BoardDto">
+    <select id="selectBoardList" resultType="io.github.yeop.board.mvc_board.dto.BoardListDto">
         <![CDATA[
         SELECT board_idx AS id
              ,title
@@ -16,7 +16,7 @@
         ]]>
     </select>
 
-    <insert id="insertBoard" parameterType="io.github.yeop.board.mvc_board.dto.BoardDto">
+    <insert id="insertBoard" parameterType="io.github.yeop.board.mvc_board.dto.InsertBoardDto">
         <![CDATA[
         INSERT INTO t_board(title
                            ,contents
@@ -29,7 +29,7 @@
         ]]>
     </insert>
 
-    <update id="updateHitCount" parameterType="io.github.yeop.board.mvc_board.dto.BoardDto">
+    <update id="updateHitCount" parameterType="int">
         <![CDATA[
         UPDATE
             t_board
@@ -38,7 +38,7 @@
         ]]>
     </update>
 
-    <select id="selectBoardDetail" parameterType="int" resultType="io.github.yeop.board.mvc_board.dto.BoardDto">
+    <select id="selectBoardDetail" parameterType="int" resultType="io.github.yeop.board.mvc_board.dto.BoardDetailDto">
         <![CDATA[
         SELECT board_idx AS id
              ,title
@@ -52,7 +52,7 @@
         ]]>
     </select>
 
-    <update id="updateBoard" parameterType="io.github.yeop.board.mvc_board.dto.BoardDto">
+    <update id="updateBoard" parameterType="io.github.yeop.board.mvc_board.dto.UpdateBoardDto">
         <![CDATA[
         UPDATE t_board
         SET title = #{title}
