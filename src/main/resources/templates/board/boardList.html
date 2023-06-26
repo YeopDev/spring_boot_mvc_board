@@ -30,7 +30,7 @@
             <td th:text="${list.id}"></td>
             <td class="title">
                 <a th:text="${list.title}"
-                   th:href="@{/yeop/board-detail/{id}(id=${#strings.toString(list.id)})}">
+                   th:href="@{/yeop/board-detail/{id}(id=${list.id})}">
                 </a>
             </td>
             <td th:text="${list.contents}"></td>
