@@ -1,17 +1,20 @@
 package io.github.yeop.board.mvc_board.service;
 
-import io.github.yeop.board.mvc_board.dto.BoardDto;
+import io.github.yeop.board.mvc_board.dto.BoardDetailDto;
+import io.github.yeop.board.mvc_board.dto.BoardListDto;
+import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
+import io.github.yeop.board.mvc_board.dto.UpdateBoardDto;
 
 import java.util.List;
 
 public interface BoardService {
-    List<BoardDto> selectBoardList();
+    List<BoardListDto> selectBoardList();
 
-    void insertBoard(BoardDto board);
+    void insertBoard(InsertBoardDto board);
 
-    BoardDto selectBoardDetail(int id);
+    BoardDetailDto selectBoardDetail(int id);
 
-    void updateBoard(BoardDto board);
+    void updateBoard(UpdateBoardDto board);
 
     void deleteBoard(int id);
 }
