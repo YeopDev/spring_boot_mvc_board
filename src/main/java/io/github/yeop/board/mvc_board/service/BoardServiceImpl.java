@@ -5,7 +5,7 @@ import io.github.yeop.board.mvc_board.dto.BoardDetailDto;
 import io.github.yeop.board.mvc_board.dto.BoardListDto;
 import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
 import io.github.yeop.board.mvc_board.dto.UpdateBoardDto;
-import io.github.yeop.board.mvc_board.repository.BoardRepository;
+import io.github.yeop.board.mvc_board.repository.repositoryXml.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
