@@ -12,4 +12,16 @@ public class BoardDetailDto{
     private final int hitCnt;
     private final String createdDatetime;
     private final String creatorId;
+
+    public static BoardDetailDto from(Board board) {
+        return BoardDetailDto.builder()
+                .id(board.id())
+                .title(board.title())
+                .contents(board.contents())
+                .hitCnt(board.hitCnt())
+                .createdDatetime(board.createdDatetime())
+                .formattedCreatedDatetime(board.createdDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .creatorId(board.creatorId())
+                .build();
+    }
 }
