@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 //    private final BoardRepository boardRepository;
     private final BoardMapper boardMapper;
