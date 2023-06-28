@@ -1,4 +1,4 @@
-package io.github.yeop.board.mvc_board.repository;
+package io.github.yeop.board.mvc_board.repository.repositoryXml;
 
 import io.github.yeop.board.mvc_board.domain.Board;
 import lombok.RequiredArgsConstructor;
