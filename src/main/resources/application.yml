@@ -16,3 +16,10 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+#logging
+logging:
+  level:
+    root: info
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
