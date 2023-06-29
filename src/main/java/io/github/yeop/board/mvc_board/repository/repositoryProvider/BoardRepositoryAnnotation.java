@@ -1,4 +1,4 @@
-package io.github.yeop.board.mvc_board.repository.repositoryAnnotation;
+package io.github.yeop.board.mvc_board.repository.repositoryProvider;
 
 import io.github.yeop.board.mvc_board.domain.Board;
 import org.apache.ibatis.annotations.InsertProvider;

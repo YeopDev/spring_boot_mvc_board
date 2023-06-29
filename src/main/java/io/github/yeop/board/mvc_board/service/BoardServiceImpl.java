@@ -5,7 +5,7 @@ import io.github.yeop.board.mvc_board.dto.BoardDetailDto;
 import io.github.yeop.board.mvc_board.dto.BoardListDto;
 import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
 import io.github.yeop.board.mvc_board.dto.UpdateBoardDto;
-import io.github.yeop.board.mvc_board.repository.repositoryXml.BoardRepository;
+import io.github.yeop.board.mvc_board.repository.repositoryMapper.BoardMapperRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,12 +17,12 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
-    private final BoardRepository boardRepository;
+    private final BoardMapperRepository boardRepository;
 
     @Override
     @Transactional(readOnly = true)
     public List<BoardListDto> selectBoardList() {
-        List<Board> boardList = boardRepository.selectBoardList();
+        List<Board> boardList = boardRepository.findByAll();
         return boardList.stream()
                 .map(board -> BoardListDto.builder()
                         .id(board.id())
