@@ -3,10 +3,11 @@ package io.github.yeop.board.mvc_board;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {MultipartAutoConfiguration.class})
 @MapperScan("io.github.yeop.board.mvc_board.repository.repositoryMapper")
 public class MvcBoardApplication {
 
