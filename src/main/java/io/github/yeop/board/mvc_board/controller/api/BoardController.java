@@ -6,6 +6,10 @@ import io.github.yeop.board.mvc_board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartException;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -13,10 +17,9 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
     private final BoardService boardService;
 
-    @PostMapping("/board")
-    public ResponseEntity<String> insertBoard(@RequestBody InsertBoardDto board) {
-        boardService.insertBoard(board);
-
+    @PostMapping(path = "/board", consumes = {"multipart/form-data"})
+    public ResponseEntity<String> insertBoard(@ModelAttribute InsertBoardDto board, @RequestParam(value = "files", required = false) List<MultipartFile> files) throws MultipartException {
+        boardService.insertBoard(board, files);
         return ResponseEntity.ok("insert success");
     }
 
