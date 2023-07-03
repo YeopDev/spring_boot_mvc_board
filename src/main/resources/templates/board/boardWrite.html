@@ -34,29 +34,30 @@
             location.href = "/yeop/board-list";
         });
 
-        document.getElementById("frm").addEventListener("submit", function (event) {
-            event.preventDefault();
+        document.getElementById("frm").addEventListener("submit", (e) => {
+            e.preventDefault();
 
-            let formData = new FormData();
-            let files = document.getElementById("files").files;
-            formData.append("title", document.getElementById("title").value);
-            formData.append("contents", document.getElementById("contents").value);
-            formData.append("files", files);
+                let formData = new FormData();
+                let files = document.getElementById("files").files;
+                formData.append("title", document.getElementById("title").value);
+                formData.append("contents", document.getElementById("contents").value);
+                for (let i = 0; i < files.length; i++) {
+                    formData.append("files"+i, files[i]);
+                }
 
-            let url = "/yeop/board/";
-
-            fetch(url, {
-                method: "POST",
-                body: formData
-            })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById("board").click();
-                    }
+                let url = "/yeop/board/";
+                fetch(url, {
+                    method: "POST",
+                    body: formData
                 })
-                .catch(error => {
-                    console.error("Error:", error);
-                });
-        });
+                    .then(response => {
+                        if (response.ok) {
+                            document.getElementById("board").click();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            });
     });
 </script>
