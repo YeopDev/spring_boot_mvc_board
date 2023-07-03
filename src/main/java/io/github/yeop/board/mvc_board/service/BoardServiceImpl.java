@@ -7,8 +7,11 @@ import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
 import io.github.yeop.board.mvc_board.dto.UpdateBoardDto;
 import io.github.yeop.board.mvc_board.repository.repositoryMapper.BoardMapperRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class BoardServiceImpl implements BoardService {
     private final BoardMapperRepository boardRepository;
 
@@ -36,9 +40,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void insertBoard(InsertBoardDto boardDto) {
+    public void insertBoard(InsertBoardDto boardDto, List<MultipartFile> files) throws MultipartException {
         Board board = Board.builder()
-                .id(boardDto.id())
                 .title(boardDto.title())
                 .contents(boardDto.contents())
                 .build();
