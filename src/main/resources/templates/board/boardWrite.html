@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h2>게시판 등록</h2>
-    <form id="frm" method="post" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         <table class="board_detail">
             <tr>
                 <td>제목</td>
@@ -34,30 +34,28 @@
             location.href = "/yeop/board-list";
         });
 
-        document.getElementById("frm").addEventListener("submit", (e) => {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
 
-                let formData = new FormData();
-                let files = document.getElementById("files").files;
-                formData.append("title", document.getElementById("title").value);
-                formData.append("contents", document.getElementById("contents").value);
-                for (let i = 0; i < files.length; i++) {
-                    formData.append("files"+i, files[i]);
-                }
+            const formData = new FormData(form);
 
-                let url = "/yeop/board/";
-                fetch(url, {
-                    method: "POST",
-                    body: formData
+            const fetchOptions = {
+                method: form.method,
+                headers: { },
+                body: formData
+            }
+
+            fetch('/yeop/board', fetchOptions)
+                .then(response => {
+                    console.log(response);
+                    if (response.ok) {
+                        document.getElementById("board").click();
+                    }
                 })
-                    .then(response => {
-                        if (response.ok) {
-                            document.getElementById("board").click();
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                    });
-            });
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
     });
 </script>
