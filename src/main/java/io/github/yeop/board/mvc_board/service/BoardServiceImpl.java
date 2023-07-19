@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartException;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -40,7 +38,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void insertBoard(InsertBoardDto boardDto, List<MultipartFile> files) throws MultipartException {
+    public void insertBoard(InsertBoardDto boardDto) throws Exception {
         Board board = Board.builder()
                 .title(boardDto.title())
                 .contents(boardDto.contents())
