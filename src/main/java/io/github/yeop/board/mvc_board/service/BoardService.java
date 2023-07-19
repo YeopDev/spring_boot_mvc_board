@@ -4,15 +4,13 @@ import io.github.yeop.board.mvc_board.dto.BoardDetailDto;
 import io.github.yeop.board.mvc_board.dto.BoardListDto;
 import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
 import io.github.yeop.board.mvc_board.dto.UpdateBoardDto;
-import org.springframework.web.multipart.MultipartException;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface BoardService {
     List<BoardListDto> selectBoardList();
 
-    void insertBoard(InsertBoardDto board, List<MultipartFile> files) throws MultipartException;
+    void insertBoard(InsertBoardDto board) throws Exception;
 
     BoardDetailDto selectBoardDetail(int id);
 
