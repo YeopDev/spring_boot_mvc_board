@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h2>게시판 등록</h2>
-    <form method="POST" enctype="multipart/form-data">
+    <form id="frm" method="POST">
         <table class="board_detail">
             <tr>
                 <td>제목</td>
@@ -21,7 +21,6 @@
                 </td>
             </tr>
         </table>
-        <input type="file" id="files" name="files" multiple="multiple">
         <input type="submit" id="submit" value="저장" class="btn">
         <input type="button" id="board" value="목록으로">
     </form>
@@ -34,21 +33,26 @@
             location.href = "/yeop/board-list";
         });
 
-        const form = document.querySelector('form');
-        form.addEventListener('submit', (e) => {
+        document.getElementById("frm").addEventListener("submit", (e) => {
             e.preventDefault();
 
-            const formData = new FormData(form);
+            let title = document.getElementById("title").value;
+            let contents = document.getElementById("contents").value;
+            let data = {
+                title: title,
+                contents: contents
+            };
 
             const fetchOptions = {
-                method: form.method,
-                headers: { },
-                body: formData
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
             }
 
             fetch('/yeop/board', fetchOptions)
                 .then(response => {
-                    console.log(response);
                     if (response.ok) {
                         document.getElementById("board").click();
                     }
