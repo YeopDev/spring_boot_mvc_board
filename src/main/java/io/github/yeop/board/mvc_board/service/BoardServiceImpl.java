@@ -6,6 +6,7 @@ import io.github.yeop.board.mvc_board.dto.BoardListDto;
 import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
 import io.github.yeop.board.mvc_board.dto.UpdateBoardDto;
 import io.github.yeop.board.mvc_board.repository.repositoryMapper.BoardMapperRepository;
+import io.github.yeop.board.mvc_board.repository.repositoryXml.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class BoardServiceImpl implements BoardService {
-    private final BoardMapperRepository boardRepository;
+    //    private final BoardMapperRepository boardRepository;
+    private BoardRepository boardRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -38,7 +40,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void insertBoard(InsertBoardDto boardDto) throws Exception {
+    public void insertBoard(InsertBoardDto boardDto) {
         Board board = Board.builder()
                 .title(boardDto.title())
                 .contents(boardDto.contents())
