@@ -17,7 +17,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     private final SqlSession sqlSession;
 
     @Override
-    public List<Board> selectBoardList() {
+    public List<Board> findByAll() {
         return sqlSession.selectList("selectBoardList");
     }
 
