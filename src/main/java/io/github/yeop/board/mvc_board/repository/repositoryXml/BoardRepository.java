@@ -5,7 +5,7 @@ import io.github.yeop.board.mvc_board.domain.Board;
 import java.util.List;
 
 public interface BoardRepository {
-    List<Board> selectBoardList();
+    List<Board> findByAll();
 
     void insertBoard(Board board);
 
