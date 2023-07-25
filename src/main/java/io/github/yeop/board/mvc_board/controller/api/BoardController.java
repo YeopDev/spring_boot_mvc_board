@@ -14,7 +14,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping(path = "/board")
-    public ResponseEntity<String> insertBoard(@RequestBody InsertBoardDto board) throws Exception {
+    public ResponseEntity<String> insertBoard(@RequestBody InsertBoardDto board) {
         boardService.insertBoard(board);
         return ResponseEntity.ok("insert success");
     }
