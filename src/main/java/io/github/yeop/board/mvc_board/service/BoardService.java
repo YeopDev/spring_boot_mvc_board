@@ -10,7 +10,7 @@ import java.util.List;
 public interface BoardService {
     List<BoardListDto> selectBoardList();
 
-    void insertBoard(InsertBoardDto board) throws Exception;
+    void insertBoard(InsertBoardDto board);
 
     BoardDetailDto selectBoardDetail(int id);
 
