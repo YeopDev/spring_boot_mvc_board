@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="io.github.yeop.board.mvc_board.repository.repositoryXml.BoardRepository">
-    <select id="selectBoardList" resultType="io.github.yeop.board.mvc_board.domain.Board">
+    <select id="findByAll" resultType="io.github.yeop.board.mvc_board.domain.Board">
         <![CDATA[
         SELECT board_idx AS id
              ,title
