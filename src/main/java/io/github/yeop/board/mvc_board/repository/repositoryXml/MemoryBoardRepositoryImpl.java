@@ -35,7 +35,6 @@ public class MemoryBoardRepositoryImpl implements BoardRepository {
 
     @Override
     public void updateBoard(Board board) {
-
     }
 
     @Override
