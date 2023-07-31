@@ -17,7 +17,6 @@ class BoardServiceTest {
     @Test
     void selectBoardList() {
         //given
-//        Board board = new Board(1, "boardA", "content", 1, "userA", LocalDateTime.now(), "userA", LocalDateTime.now());
         boardService.insertBoard(new InsertBoardDto("boardA", "content"));
 
         //when
