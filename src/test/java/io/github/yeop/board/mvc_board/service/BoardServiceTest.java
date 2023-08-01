@@ -1,12 +1,9 @@
 package io.github.yeop.board.mvc_board.service;
 
-import io.github.yeop.board.mvc_board.domain.Board;
 import io.github.yeop.board.mvc_board.dto.BoardListDto;
 import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
