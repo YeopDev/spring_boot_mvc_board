@@ -5,7 +5,6 @@ import io.github.yeop.board.mvc_board.dto.BoardDetailDto;
 import io.github.yeop.board.mvc_board.dto.BoardListDto;
 import io.github.yeop.board.mvc_board.dto.InsertBoardDto;
 import io.github.yeop.board.mvc_board.dto.UpdateBoardDto;
-import io.github.yeop.board.mvc_board.repository.repositoryMapper.BoardMapperRepository;
 import io.github.yeop.board.mvc_board.repository.repositoryXml.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
