@@ -22,6 +22,4 @@ class BoardServiceTest {
         //then
         assertThat(findBoardList).hasSize(1);
     }
-
-
 }
